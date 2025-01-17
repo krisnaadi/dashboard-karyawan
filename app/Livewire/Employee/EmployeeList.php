@@ -1,30 +1,36 @@
 <?php
 
-namespace App\Livewire\Position;
+namespace App\Livewire\Employee;
 
-use App\Livewire\Forms\Position\PositionForm;
-use App\Models\Position;
+use App\Livewire\Forms\Employee\EmployeeForm;
+use App\Models\Unit;
+use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PositionList extends Component
+class EmployeeList extends Component
 {
     use WithPagination;
 
-    public PositionForm $form;
+    public EmployeeForm $form;
     public $isUpdate = false;
     
     #[Computed()]
-    public function positions() {
-        return Position::paginate(10);
+    public function users() {
+        return User::with(['unit'])->paginate(10);
+    }
+
+    #[Computed()]
+    public function units() {
+        return Unit::get();
     }
 
     public function render()
     {
-        return view('livewire.position.position-list')
+        return view('livewire.employee.employee-list')
             ->layoutData([
-                'title' => 'Jabatan',
+                'title' => 'Karyawan',
             ]);
     }
 
@@ -40,11 +46,11 @@ class PositionList extends Component
 
     public function edit($id) {
         $this->isUpdate = true;
-        $unit = Position::find($id);
+        $unit = User::find($id);
         $this->form->setUnit($unit);
     }
 
     public function delete($id) {
-        Position::destroy($id);
+        User::destroy($id);
     }
 }

@@ -76,7 +76,7 @@
                             <div class="label">
                                 <span class="label-text">Nama</span>
                             </div>
-                            <input wire:model="form.name" type="text" placeholder="Input nama unit" class="input input-bordered w-full" />
+                            <input wire:model="form.name" type="text" placeholder="Input nama jabatan" class="input input-bordered w-full" />
                             @error('form.name')
                                 <div class="label">
                                     <span class="label-text-alt text-error">{{ $message }}</span>
@@ -87,7 +87,7 @@
                     <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
                         <button type="submit" wire:loading.attr="disabled" class="inline-flex btn btn-primary">
                             <span wire:loading.remove>Simpan</span>
-                            <span wire:loading>Menyimpan...</span>
+                            <span wire:loading>Loading...</span>
                         </button>
                     </div>
                 </form>

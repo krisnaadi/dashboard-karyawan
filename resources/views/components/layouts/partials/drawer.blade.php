@@ -4,7 +4,8 @@
     <nav class="flex flex-col min-h-screen gap-2 px-6 py-10 overflow-y-auto w-72 bg-base-100">
         <ul class="menu">
             <li>
-                <a class="{{ Request::routeIs('dashboard.*') ? 'active' : '' }}" href="#">
+                <a class="{{ Request::routeIs('dashboard.*') ? 'active' : '' }}" 
+                    href="{{ route('dashboard.index') }}">
                     <x-phosphor-house class="w-5 h-5" />
                     Dashboard
                 </a>
@@ -17,8 +18,8 @@
                     </summary>
                     <ul>
                         <li>
-                            <a class="{{ Request::routeIs('master-data.land-category.*') ? 'active' : '' }}"
-                                href="#">
+                            <a class="{{ Request::routeIs('master-data.employee.*') ? 'active' : '' }}"
+                                href="{{ route('master-data.employee.index') }}">
                                 Karyawan
                             </a>
                         </li>

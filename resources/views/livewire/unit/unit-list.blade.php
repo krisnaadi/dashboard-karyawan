@@ -65,7 +65,7 @@
                 x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
                 class="relative w-full py-6 bg-white border shadow-lg px-7 border-neutral-200 sm:max-w-lg sm:rounded-lg">
                 <div class="flex items-center justify-between pb-3">
-                    <h3 class="text-lg font-semibold">Unit</h3>
+                    <h3 class="text-lg font-semibold">{{ $isUpdate ? 'Edit' : 'Tambah' }} Unit</h3>
                     <button @click="modalOpen=false" class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 text-gray-600 rounded-full hover:text-gray-800 hover:bg-gray-50">
                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>  
                     </button>
@@ -87,7 +87,7 @@
                     <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
                         <button type="submit" wire:loading.attr="disabled" class="inline-flex btn btn-primary">
                             <span wire:loading.remove>Simpan</span>
-                            <span wire:loading>Menyimpan...</span>
+                            <span wire:loading>Loading...</span>
                         </button>
                     </div>
                 </form>
