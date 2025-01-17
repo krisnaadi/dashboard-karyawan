@@ -12,8 +12,6 @@
 <body class="antialiased bg-base-200">
     {{ $slot }}
 
-    @livewire('notifications')
-
     @vite('resources/js/app.js')
 </body>
 

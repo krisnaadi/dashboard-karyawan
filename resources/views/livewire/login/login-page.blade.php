@@ -2,9 +2,29 @@
     <div class="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-xl">
         <h2 class="text-2xl font-bold text-gray-700">Masuk ke Akun Anda</h2>
         <form class="space-y-4" wire:submit.prevent="login">
-            <input type="text" placeholder="Input Username anda" class="input input-bordered w-full max-w-xs" />
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Username</span>
+                </div>
+                <input wire:model="form.username" type="text" placeholder="Input Username anda" class="input input-bordered w-full" />
+                @error('form.username')
+                    <div class="label">
+                        <span class="label-text-alt text-error">{{ $message }}</span>
+                    </div>
+                @enderror
+            </label>
 
-            <input type="password" placeholder="Input Password anda" class="input input-bordered w-full max-w-xs" />
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Password</span>
+                </div>
+                <input wire:model="form.password" type="password" placeholder="Input Password anda" class="input input-bordered w-full" />
+                @error('form.password')
+                    <div class="label">
+                        <span class="label-text-alt text-error">{{ $message }}</span>
+                    </div>
+                @enderror
+            </label>
 
             <button type="submit" wire:loading.attr="disabled"
                 class="w-full btn btn-primary">

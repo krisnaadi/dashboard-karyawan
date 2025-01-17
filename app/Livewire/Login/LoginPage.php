@@ -11,7 +11,8 @@ class LoginPage extends Component
 
     public function render()
     {
-        return view('livewire.login.login-page');
+        return view('livewire.login.login-page')
+            ->layout('components.layouts.login');
     }
 
     public function login()
