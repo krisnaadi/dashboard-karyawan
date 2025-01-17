@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('unit_id')->nullable()->constrained('units')->onDelete('set null');
-            $table->date('join_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('join_date')->nullable();
         });
     }
 

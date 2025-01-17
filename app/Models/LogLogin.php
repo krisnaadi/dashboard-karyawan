@@ -9,4 +9,15 @@ class LogLogin extends Model
 {
     /** @use HasFactory<\Database\Factories\LogLoginFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'ip_address',
+        'user_agent',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

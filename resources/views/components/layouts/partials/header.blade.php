@@ -14,7 +14,7 @@
             </div>
         </div>
         <ul tabindex="0" class="p-2 mt-3 shadow-2xl menu dropdown-content w-52 rounded-box bg-base-100">
-            {{-- <li>@livewire('user.logout')</li> --}}
+            <li>@livewire('logout')</li>
         </ul>
     </div>
     <!-- /dropdown -->

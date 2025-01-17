@@ -53,4 +53,9 @@ class User extends Authenticatable
     public function unit() {
         return $this->belongsTo(Unit::class);
     }
+
+    public function logLogins()
+    {
+        return $this->hasMany(LogLogin::class);
+    }
 }
