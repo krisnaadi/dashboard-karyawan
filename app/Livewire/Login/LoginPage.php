@@ -18,8 +18,8 @@ class LoginPage extends Component
     public function login()
     {
         if (!$this->form->login()) {
-            
+            dd('sukameju');
         }
-        return $this->redirect('dashboard.index');
+        return $this->redirectRoute('unit.index');
     }
 }

@@ -7,7 +7,7 @@
         <title>{{ $title ?? 'Page Title' }}</title>
         @vite('resources/css/app.css')
     </head>
-    <body>
+    <body class="antialiased drawer min-h-screen bg-base-200 lg:drawer-open">
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <!-- content -->
         <main class="drawer-content">

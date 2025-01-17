@@ -6,7 +6,6 @@
     <div class="grow">
         <h1 class="lg:text-2xl lg:font-light">{{ isset($title) ? $title : '' }}</h1>
     </div>
-    @livewire('notif-dropdown')
     <!-- dropdown -->
     <div class="z-10 dropdown-end dropdown">
         <div tabindex="0" class="avatar placeholder btn btn-circle btn-ghost">
@@ -15,7 +14,7 @@
             </div>
         </div>
         <ul tabindex="0" class="p-2 mt-3 shadow-2xl menu dropdown-content w-52 rounded-box bg-base-100">
-            <li>@livewire('user.logout')</li>
+            {{-- <li>@livewire('user.logout')</li> --}}
         </ul>
     </div>
     <!-- /dropdown -->

@@ -9,4 +9,8 @@ class Unit extends Model
 {
     /** @use HasFactory<\Database\Factories\UnitFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+    ];
 }
