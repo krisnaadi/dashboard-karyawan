@@ -53,34 +53,25 @@
                         <div class="label">
                             <span class="label-text">Unit</span>
                         </div>
-                        <x-mary-choices-offline
-                            class="border-neutral-content"
-                            wire:model="editForm.unit_id"
-                            :options="$this->units"
-                            placeholder="Search ..."
-                            single
-                            searchable />
-                        @error('editForm.unit_id')
-                            <div class="label">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
+                        <x-mary-choices class="border-neutral-content" wire:model="editForm.unit_id"
+                            :options="$this->units" placeholder="Search ..." single searchable search-function="searchUnit"
+                            debounce="300ms" min-chars="2" >
+                            <x-slot:append>
+                                <x-mary-button label="Create" icon="o-plus" class="rounded-s-none btn-primary" wire:click="createUnit"/>
+                            </x-slot:append>
+                        </x-mary-choices-offline>
                     </label>
                     <label class="form-control w-full">
                         <div class="label">
                             <span class="label-text">Jabatan</span>
                         </div>
-                        <x-mary-choices-offline
-                            class="border-neutral-content"
-                            wire:model="editForm.position_ids"
-                            :options="$this->positions"
-                            placeholder="Search ..."
-                            searchable />
-                        @error('editForm.position_ids')
-                            <div class="label">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
+                        <x-mary-choices class="border-neutral-content" wire:model="editForm.position_ids"
+                            :options="$this->positions" placeholder="Search ..." searchable search-function="searchPosition"
+                            debounce="300ms" min-chars="2">
+                            <x-slot:append>
+                                <x-mary-button label="Create" icon="o-plus" class="rounded-s-none btn-primary" wire:click="createPosition"/>
+                            </x-slot:append>
+                        </x-mary-choices-offline>
                     </label>
                     <label class="form-control w-full">
                         <div class="label">

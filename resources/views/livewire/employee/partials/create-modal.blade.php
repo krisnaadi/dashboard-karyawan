@@ -75,26 +75,24 @@
                         <div class="label">
                             <span class="label-text">Unit</span>
                         </div>
-                        <x-mary-choices-offline class="border-neutral-content" wire:model="form.unit_id"
-                            :options="$this->units" placeholder="Search ..." single searchable search-function="searchUnit()">
-                            @if ($showAddUnit)
-                                <x-slot:append>
-                                    <x-mary-button label="Create" icon="o-plus" class="rounded-s-none btn-primary" />
-                                </x-slot:append>
-                            @endif
+                        <x-mary-choices class="border-neutral-content" wire:model="form.unit_id"
+                            :options="$this->units" placeholder="Search ..." single searchable search-function="searchUnit"
+                            debounce="300ms" min-chars="2" >
+                            <x-slot:append>
+                                <x-mary-button label="Create" icon="o-plus" class="rounded-s-none btn-primary" wire:click="createUnit"/>
+                            </x-slot:append>
                         </x-mary-choices-offline>
                     </label>
                     <label class="form-control w-full">
                         <div class="label">
                             <span class="label-text">Jabatan</span>
                         </div>
-                        <x-mary-choices-offline class="border-neutral-content" wire:model="form.position_ids"
-                            :options="$this->positions" placeholder="Search ..." searchable search-function="searchPosition()">
-                            @if ($showAddPosition)
-                                <x-slot:append>
-                                    <x-mary-button label="Create" icon="o-plus" class="rounded-s-none btn-primary" />
-                                </x-slot:append>
-                            @endif
+                        <x-mary-choices class="border-neutral-content" wire:model="form.position_ids"
+                            :options="$this->positions" placeholder="Search ..." searchable search-function="searchPosition"
+                            debounce="300ms" min-chars="2">
+                            <x-slot:append>
+                                <x-mary-button label="Create" icon="o-plus" class="rounded-s-none btn-primary" wire:click="createPosition"/>
+                            </x-slot:append>
                         </x-mary-choices-offline>
                     </label>
                     <label class="form-control w-full">

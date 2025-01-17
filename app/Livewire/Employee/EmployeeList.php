@@ -44,7 +44,7 @@ class EmployeeList extends Component
     #[Computed()]
     public function positions() {
         $position = Position::query();
-        if ($this->unitSearchValue != '') {
+        if ($this->positionSearchValue != '') {
             $position->where('name', 'like', '%' . $this->positionSearchValue . '%');
         }
         $position = $position->get();
@@ -90,12 +90,30 @@ class EmployeeList extends Component
 
     public function searchUnit(string $value = '')
     {
-        $this->unitSearchValue = $value;        
+        $this->unitSearchValue = $value;  
+        unset($this->units);      
     }
 
     public function searchPosition(string $value = '')
     {
-        $this->positionSearchValue = $value;  
-        dd('meju');      
+        $this->positionSearchValue = $value;
+        unset($this->positions);
+    }
+
+    public function createPosition() {
+        $item = Position::create([
+            'name' => $this->positionSearchValue
+        ]);
+
+        $this->form->position_ids[] = $item->id;
+        unset($this->units); 
+    }
+
+    public function createUnit() {
+        $item = Unit::create([
+            'name' => $this->unitSearchValue
+        ]);
+        $this->form->unit_id = $item->id;
+        unset($this->positions);
     }
 }
