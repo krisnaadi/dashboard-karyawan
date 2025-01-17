@@ -1,9 +1,9 @@
 <div class="p-4 lg:p-10 space-y-4">
     <div class="flex items-center">
-        <input type="date"
+        <input type="date" wire:model="startDate"
             class="input input-bordered w-full" />
         <span class="mx-2 text-lg">-</span>
-        <input type="date"
+        <input type="date" wire:model="endDate"
             class="input input-bordered w-full" />
     </div>
     <section class="stats stats-vertical col-span-12 w-full shadow-sm xl:stats-horizontal">

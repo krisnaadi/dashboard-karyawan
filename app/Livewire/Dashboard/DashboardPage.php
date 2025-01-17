@@ -7,20 +7,40 @@ use App\Models\Position;
 use App\Models\Unit;
 use App\Models\User;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class DashboardPage extends Component
 {
+    #[Validate('required|date|before_or_equal:endDate')]
+    public $startDate;
+    #[Validate('required|date|after_or_equal:startDate')]
+    public $endDate;
+
+    public function mount()
+    {
+        $this->startDate = now()->format('Y-m-d');
+        $this->endDate = now()->format('Y-m-d');
+    }
+
     #[Computed()]
     public function totalEmployee() 
     {
-        return User::count();
+        $user = User::query();
+        if ($this->startDate && $this->endDate) {
+            $user->whereBetween('join_date', [$this->startDate, $this->endDate]);
+        }
+        return $user->count();
     }
 
     #[Computed()]
     public function totalLogin() 
     {
-        return LogLogin::count();
+        $logLogin = LogLogin::query();
+        if ($this->startDate && $this->endDate) {
+            return $logLogin->whereBetween('created_at', [$this->startDate, $this->endDate])->count();
+        }
+        return $logLogin->count();
     }
 
     #[Computed()]
@@ -38,11 +58,18 @@ class DashboardPage extends Component
     #[Computed()]
     public function topEmployee() 
     {
-        return User::withCount('logLogins')
+        $user = User::withCount('logLogins')
             ->having('log_logins_count', '>', 25)
             ->orderBy('log_logins_count', 'desc') 
-            ->take(10)
-            ->get();;
+            ->take(10);
+
+        if ($this->startDate && $this->endDate) {
+            $user->whereHas('logLogins', function ($query) {
+                $query->whereBetween('created_at', [$this->startDate, $this->endDate]);
+            });
+        }
+
+        return $user->get();
     }
 
     public function render()
