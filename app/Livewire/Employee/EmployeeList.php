@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Employee;
 
-use App\Livewire\Forms\Employee\EmployeeForm;
+use App\Livewire\Forms\Employee\CreateEmployeeForm;
+use App\Livewire\Forms\Employee\EditEmployeeForm;
+use App\Models\Position;
 use App\Models\Unit;
 use App\Models\User;
 use Livewire\Attributes\Computed;
@@ -13,7 +15,8 @@ class EmployeeList extends Component
 {
     use WithPagination;
 
-    public EmployeeForm $form;
+    public CreateEmployeeForm $form;
+    public EditEmployeeForm $editForm;
     public $isUpdate = false;
     
     #[Computed()]
@@ -26,6 +29,11 @@ class EmployeeList extends Component
         return Unit::get();
     }
 
+    #[Computed()]
+    public function positions() {
+        return Position::get();
+    }
+
     public function render()
     {
         return view('livewire.employee.employee-list')
@@ -36,7 +44,7 @@ class EmployeeList extends Component
 
     public function save() {
         if ($this->isUpdate) {
-            $this->form->update();
+            $this->editForm->update();
             $this->isUpdate = false;
         } else {
             $this->form->store();
@@ -46,8 +54,8 @@ class EmployeeList extends Component
 
     public function edit($id) {
         $this->isUpdate = true;
-        $unit = User::find($id);
-        $this->form->setUnit($unit);
+        $user = User::find($id);
+        $this->editForm->set($user);
     }
 
     public function delete($id) {

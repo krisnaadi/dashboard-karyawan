@@ -1,4 +1,4 @@
-<div class="p-4 lg:p-10 space-y-4" x-data="{ modalOpen: false }">
+<div class="p-4 lg:p-10 space-y-4" x-data="{ modalOpen: false, modalEditOpen: false }">
     <div class="text-right">
         <button class="btn btn-primary" wire:click="create"><x-heroicon-o-plus class="w-5 h-5" /> Tambah</button>
     </div>
@@ -31,7 +31,7 @@
                             <td width="200px">
                                 <div class="flex gap-2">
                                     <button class="btn btn-square btn-ghost btn-sm"
-                                        wire:click="edit({{ $user->id }}); modalOpen=true">
+                                        wire:click="edit({{ $user->id }}); modalEditOpen=true">
                                         <x-heroicon-o-pencil class="w-5 h-5" />
                                     </button>
                                     <button class="btn btn-square btn-ghost btn-sm"
@@ -55,4 +55,5 @@
     {{ $this->users->links() }}
 
     @include('livewire.employee.partials.create-modal')
+    @include('livewire.employee.partials.edit-modal')
 </div>
