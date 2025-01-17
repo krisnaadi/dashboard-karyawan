@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(LogLogin::class);
     }
+
+    public function positions()
+    {
+        return $this->belongsToMany(Position::class);
+    }
 }

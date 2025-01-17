@@ -18,7 +18,7 @@ class EmployeeList extends Component
     
     #[Computed()]
     public function users() {
-        return User::with(['unit'])->paginate(10);
+        return User::with(['unit', 'positions'])->paginate(10);
     }
 
     #[Computed()]
@@ -52,5 +52,11 @@ class EmployeeList extends Component
 
     public function delete($id) {
         User::destroy($id);
+    }
+
+    public function create() {
+        $this->isUpdate = false;
+        $this->form->reset();
+        $this->dispatch('open-modal');
     }
 }

@@ -1,6 +1,6 @@
 <div class="p-4 lg:p-10 space-y-4" x-data="{ modalOpen: false }">
     <div class="text-right">
-        <button class="btn btn-primary" @click="modalOpen=true"><x-heroicon-o-plus class="w-5 h-5" /> Tambah</button>
+        <button class="btn btn-primary" wire:click="create"><x-heroicon-o-plus class="w-5 h-5" /> Tambah</button>
     </div>
     <div class="card bg-base-100 w-full shadow-xl">
         <div class="overflow-x-auto">
@@ -46,7 +46,7 @@
 
     <template x-teleport="body">
         <div x-show="modalOpen" class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen" x-cloak
-            @close-modal.window="modalOpen=false">
+            @close-modal.window="modalOpen=false"  @open-modal.window="modalOpen=true">
             <div x-show="modalOpen"
                 x-transition:enter="ease-out duration-300"
                 x-transition:enter-start="opacity-0"

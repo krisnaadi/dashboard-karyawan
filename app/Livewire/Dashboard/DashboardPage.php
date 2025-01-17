@@ -6,6 +6,8 @@ use App\Models\LogLogin;
 use App\Models\Position;
 use App\Models\Unit;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -38,7 +40,7 @@ class DashboardPage extends Component
     {
         $logLogin = LogLogin::query();
         if ($this->startDate && $this->endDate) {
-            return $logLogin->whereBetween('created_at', [$this->startDate, $this->endDate])->count();
+            $logLogin->whereBetween(DB::raw('DATE(created_at)'), [$this->startDate, $this->endDate]);
         }
         return $logLogin->count();
     }
@@ -65,7 +67,7 @@ class DashboardPage extends Component
 
         if ($this->startDate && $this->endDate) {
             $user->whereHas('logLogins', function ($query) {
-                $query->whereBetween('created_at', [$this->startDate, $this->endDate]);
+                $query->whereBetween(DB::raw('DATE(created_at)'), [$this->startDate, $this->endDate]);
             });
         }
 

@@ -47,4 +47,10 @@ class UnitList extends Component
     public function delete($id) {
         Unit::destroy($id);
     }
+
+    public function create() {
+        $this->isUpdate = false;
+        $this->form->reset();
+        $this->dispatch('open-modal');
+    }
 }

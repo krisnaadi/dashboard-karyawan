@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,6 @@ class LogLoginFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory()->create()->id,
             'ip_address' => $this->faker->ipv4(),
             'user_agent' => $this->faker->userAgent(),
         ];
