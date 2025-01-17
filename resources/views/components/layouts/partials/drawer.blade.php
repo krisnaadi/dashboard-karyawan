@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li>
-                <details {{ Request::routeIs('master-data.*') ? 'open=""' : '' }}>
+                <details open="">
                     <summary>
                         <x-phosphor-archive class="w-5 h-5" />
                         Master Data
@@ -23,14 +23,14 @@
                             </a>
                         </li>
                         <li>
-                            <a class="{{ Request::routeIs('master-data.land-category.*') ? 'active' : '' }}"
-                                href="#">
+                            <a class="{{ Request::routeIs('master-data.unit.*') ? 'active' : '' }}"
+                                href="{{ route('master-data.unit.index') }}">
                                 Unit
                             </a>
                         </li>
                         <li>
-                            <a class="{{ Request::routeIs('master-data.land-category.*') ? 'active' : '' }}"
-                                href="#">
+                            <a class="{{ Request::routeIs('master-data.position.*') ? 'active' : '' }}"
+                                href="{{ route('master-data.position.index') }}">
                                 Jabatan
                             </a>
                         </li>
