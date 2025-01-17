@@ -1,15 +1,13 @@
 <template x-teleport="body">
-    <div x-show="modalOpen" class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen"
-        x-cloak @close-modal.window="modalOpen=false"
-        @open-modal.window="modalOpen=true">
+    <div x-show="modalOpen" class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen" x-cloak
+        @close-modal.window="modalOpen=false" @open-modal.window="modalOpen=true">
         <div x-show="modalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-300"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="modalOpen=false"
             class="absolute inset-0 w-full h-full bg-white backdrop-blur-sm bg-opacity-70"></div>
         <div x-show="modalOpen" x-trap.inert.noscroll="modalOpen" x-transition:enter="ease-out duration-300"
             x-transition:enter-start="opacity-0 -translate-y-2 sm:scale-95"
-            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-            x-transition:leave="ease-in duration-200"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
             class="relative w-full py-6 bg-white border shadow-lg px-7 border-neutral-200 sm:max-w-lg sm:rounded-lg">
@@ -77,34 +75,27 @@
                         <div class="label">
                             <span class="label-text">Unit</span>
                         </div>
-                        <x-mary-choices-offline
-                            class="border-neutral-content"
-                            wire:model="form.unit_id"
-                            :options="$this->units"
-                            placeholder="Search ..."
-                            single
-                            searchable />
-                        @error('form.unit_id')
-                            <div class="label">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
+                        <x-mary-choices-offline class="border-neutral-content" wire:model="form.unit_id"
+                            :options="$this->units" placeholder="Search ..." single searchable search-function="searchUnit()">
+                            @if ($showAddUnit)
+                                <x-slot:append>
+                                    <x-mary-button label="Create" icon="o-plus" class="rounded-s-none btn-primary" />
+                                </x-slot:append>
+                            @endif
+                        </x-mary-choices-offline>
                     </label>
                     <label class="form-control w-full">
                         <div class="label">
                             <span class="label-text">Jabatan</span>
                         </div>
-                        <x-mary-choices-offline
-                            class="border-neutral-content"
-                            wire:model="form.position_ids"
-                            :options="$this->positions"
-                            placeholder="Search ..."
-                            searchable />
-                        @error('form.position_ids')
-                            <div class="label">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
+                        <x-mary-choices-offline class="border-neutral-content" wire:model="form.position_ids"
+                            :options="$this->positions" placeholder="Search ..." searchable search-function="searchPosition()">
+                            @if ($showAddPosition)
+                                <x-slot:append>
+                                    <x-mary-button label="Create" icon="o-plus" class="rounded-s-none btn-primary" />
+                                </x-slot:append>
+                            @endif
+                        </x-mary-choices-offline>
                     </label>
                     <label class="form-control w-full">
                         <div class="label">

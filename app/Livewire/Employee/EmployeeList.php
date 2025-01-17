@@ -18,6 +18,10 @@ class EmployeeList extends Component
     public CreateEmployeeForm $form;
     public EditEmployeeForm $editForm;
     public $isUpdate = false;
+    public $unitSearchValue = '';
+    public $showAddUnit = false;
+    public $positionSearchValue = '';
+    public $showAddPosition = false;
     
     #[Computed()]
     public function users() {
@@ -26,12 +30,28 @@ class EmployeeList extends Component
 
     #[Computed()]
     public function units() {
-        return Unit::get();
+        $unit = Unit::query();
+        if ($this->unitSearchValue != '') {
+            $unit->where('name', 'like', '%' . $this->unitSearchValue . '%');
+        }
+        $unit = $unit->get();
+        if ($unit->isEmpty()) {
+            $this->showAddUnit = true;
+        }
+        return $unit;
     }
 
     #[Computed()]
     public function positions() {
-        return Position::get();
+        $position = Position::query();
+        if ($this->unitSearchValue != '') {
+            $position->where('name', 'like', '%' . $this->positionSearchValue . '%');
+        }
+        $position = $position->get();
+        if ($position->isEmpty()) {
+            $this->showAddPosition = true;
+        }
+        return $position;
     }
 
     public function render()
@@ -66,5 +86,16 @@ class EmployeeList extends Component
         $this->isUpdate = false;
         $this->form->reset();
         $this->dispatch('open-modal');
+    }
+
+    public function searchUnit(string $value = '')
+    {
+        $this->unitSearchValue = $value;        
+    }
+
+    public function searchPosition(string $value = '')
+    {
+        $this->positionSearchValue = $value;  
+        dd('meju');      
     }
 }
